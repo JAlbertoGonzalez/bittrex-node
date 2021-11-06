@@ -3,22 +3,15 @@
   <h1>bittrex-v3-node</h1>
 </a>
 <p><a href="https://app.wercker.com/project/byKey/feb7e7d87d5a4a29ea9c04b4a1350a44"><img src="https://app.wercker.com/status/feb7e7d87d5a4a29ea9c04b4a1350a44/s/master" alt="wercker status" title="wercker status"></a>
-<a href="https://codecov.io/gh/JAlbertoGonzalez/bittrex-node"><img src="https://codecov.io/gh/JAlbertoGonzalez/bittrex-node/branch/master/graph/badge.svg?token=4OAXQYECUQ" alt="codecov"></a></p>
+<a href="https://codecov.io/gh/JAlbertoGonzalez/bittrex-node"><img src="https://codecov.io/gh/JAlbertoGonzalez/bittrex-node/branch/master/graph/badge.svg?token=4OAXQYECUQ" alt="codecov"></a>
+<a href="https://badge.fury.io/js/bittrex-v3-node"><img src="https://badge.fury.io/js/bittrex-v3-node.svg" alt="npm version"></a></p>
 <p>This project is based on <a href="https://github.com/AndrewBarba">Andrew Barba</a> <a href="https://github.com/AndrewBarba/bittrex-node">bittrex-node</a>. It is mainly developed for personal use, but feel free to fork, notify issues or pull request contributions.</p>
-
-<a href="#development-status" id="development-status" style="color: inherit; text-decoration: none;">
-  <h2>Development status</h2>
-</a>
-<blockquote>
-<p>:warning: <strong>This package is under development</strong>: Use at your own risk.</p>
-</blockquote>
-<p>This warning will be removed when all base endpoints and tests are finished.</p>
 
 <a href="#assumptions" id="assumptions" style="color: inherit; text-decoration: none;">
   <h3>Assumptions</h3>
 </a>
 <ul>
-<li>This project will be written in TypeScript. Params and responses will be strictly typed according to official docs.</li>
+<li>This project is written in TypeScript. Params and responses will be strictly typed according to official docs.</li>
 <li>Endpoint details will be documented with the official <a href="https://bittrex.github.io/api/v3">bittrex API V3 documentation</a>.</li>
 <li>This project won&#39;t be compatible with any v1.1 API version. Use <a href="https://github.com/AndrewBarba/bittrex-node">bittrex-node</a> for that purpose.</li>
 <li>Libraries will be updated to latest version, specially axios, to avoid the latest well-known security issues with old versions.</li>
@@ -54,7 +47,7 @@
 <li><input checked="" disabled="" type="checkbox"> Markets</li>
 <li><input checked="" disabled="" type="checkbox"> Orders</li>
 <li><input checked="" disabled="" type="checkbox"> Ping</li>
-<li><input checked="" disabled="" type="checkbox"> Subaccounts</li>
+<li><input checked="" disabled="" type="checkbox"> Subaccounts (:warning: only for partners)</li>
 <li><input checked="" disabled="" type="checkbox"> Transfers</li>
 <li><input checked="" disabled="" type="checkbox"> Withdrawals</li>
 </ul>
@@ -66,44 +59,31 @@
 <li><input checked="" disabled="" type="checkbox"> Promise based with async/await</li>
 </ul>
 
-<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-  <h2>Documentation</h2>
-</a>
-
 <a href="#get-started" id="get-started" style="color: inherit; text-decoration: none;">
   <h2>Get started</h2>
 </a>
 <p>If you&#39;re using the Bittrex REST API, I can assure you this is the only library worth using. Here&#39;s why:</p>
 <ul>
 <li>It doesn&#39;t make you parse the Bittrex response and look for errors</li>
-<li>It properly parses all timestamps to JavaScript Date objects</li>
+<li><del>It properly parses all timestamps to JavaScript Date objects</del> (:warning: work in progress)</li>
 <li>It uses proper JavaScript and Node conventions</li>
-<li>It throws proper errors when parameters are missing</li>
+<li><del>It throws proper errors when parameters are missing</del> (:warning: work in progress)</li>
 <li>It uses a single https client with Keep-Alive enabled</li>
 <li>It&#39;s faster than every other node Bittrex library</li>
 </ul>
 
+<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+  <h2>Documentation</h2>
+</a>
+
 <a href="#initialize-client" id="initialize-client" style="color: inherit; text-decoration: none;">
-  <h2>Initialize Client</h2>
+  <h3>Initialize Client</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">BittrexClient</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&#39;bittrex-v3-node&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-0">let</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">BittrexClient</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-5">apiKey:</span><span class="hl-1"> </span><span class="hl-4">&#39;12345&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-5">apiSecret:</span><span class="hl-1"> </span><span class="hl-4">&#39;abcde&#39;</span><br/><span class="hl-1">})</span>
 </code></pre>
 
-<a href="#public-methods" id="public-methods" style="color: inherit; text-decoration: none;">
-  <h2>Public Methods</h2>
+<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
+  <h3>Docs</h3>
 </a>
-<pre><code class="language-javascript"><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">markets</span><span class="hl-1">()</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">currencies</span><span class="hl-1">()</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">ticker</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC-ETH&#39;</span><span class="hl-1">)</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">marketSummaries</span><span class="hl-1">()</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">marketSummary</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC-ETH&#39;</span><span class="hl-1">)</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">marketHistory</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC-ETH&#39;</span><span class="hl-1">)</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">orderBook</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC-ETH&#39;</span><span class="hl-1">, { </span><span class="hl-5">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;both&#39;</span><span class="hl-1"> })</span>
-</code></pre>
-
-<a href="#market-methods" id="market-methods" style="color: inherit; text-decoration: none;">
-  <h2>Market Methods</h2>
-</a>
-<pre><code class="language-javascript"><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">buyLimit</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC-ETH&#39;</span><span class="hl-1">, { </span><span class="hl-5">quantity:</span><span class="hl-1"> </span><span class="hl-7">2.1</span><span class="hl-1">, </span><span class="hl-5">price:</span><span class="hl-1"> </span><span class="hl-7">0.1</span><span class="hl-1"> })</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">sellLimit</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC-ETH&#39;</span><span class="hl-1">, { </span><span class="hl-5">quantity:</span><span class="hl-1"> </span><span class="hl-7">2.1</span><span class="hl-1">, </span><span class="hl-5">price:</span><span class="hl-1"> </span><span class="hl-7">0.1</span><span class="hl-1"> })</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">cancelOrder</span><span class="hl-1">(</span><span class="hl-4">&#39;1234-5678&#39;</span><span class="hl-1">)</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">openOrders</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC-ETH&#39;</span><span class="hl-1">)</span>
-</code></pre>
-
-<a href="#account-methods" id="account-methods" style="color: inherit; text-decoration: none;">
-  <h2>Account Methods</h2>
-</a>
-<pre><code class="language-javascript"><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">balances</span><span class="hl-1">()</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">balance</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC&#39;</span><span class="hl-1">)</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">depositAddress</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC&#39;</span><span class="hl-1">)</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">withdraw</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC&#39;</span><span class="hl-1">, { </span><span class="hl-5">quantity:</span><span class="hl-1"> </span><span class="hl-7">1.2</span><span class="hl-1">, </span><span class="hl-5">address:</span><span class="hl-1"> </span><span class="hl-4">&#39;abcde&#39;</span><span class="hl-1"> })</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">order</span><span class="hl-1">(</span><span class="hl-4">&#39;30594e6e-ba54-4914-96f3-5b9d5de2468e&#39;</span><span class="hl-1">)</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">orderHistory</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC-ETH&#39;</span><span class="hl-1">)</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">withdrawalHistory</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC&#39;</span><span class="hl-1">)</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">depositHistory</span><span class="hl-1">(</span><span class="hl-4">&#39;BTC&#39;</span><span class="hl-1">)</span>
-</code></pre>
+<p>Package docs <a href="https://jalbertogonzalez.github.io/bittrex-v3-node/">here</a>.</p>
 </div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/BittrexClient.html" class="tsd-kind-icon">Bittrex<wbr/>Client</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
